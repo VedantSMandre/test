@@ -11,13 +11,13 @@ TRANSACTION_REFERENCE_NUMBER (Displayed to users as a reference.)
 BENEF_CUST_NAME (May need to be parsed into first and last name if stored as a single string.)
 BENEF_CUST_ID (Unique identifier for the beneficiary in the system.)
 ## 1.3 Payment Type / Tags
-TRANSACTION_CODE (Defines transaction type, e.g., deposit, withdrawal.)
-FUNDS_TYPE (e.g., ACH, WIRE, etc.)—important for routing.
-CATEGORY_PURPOSE (Categorizes the purpose of the payment, useful for compliance reporting.)
+  TRANSACTION_CODE (Defines transaction type, e.g., deposit, withdrawal.)
+  FUNDS_TYPE (e.g., ACH, WIRE, etc.)—important for routing.
+  CATEGORY_PURPOSE (Categorizes the purpose of the payment, useful for compliance reporting.)
 ## 1.4 Amount Details
-AMOUNT (Transaction amount.)
-CURRENCY (Currency in which the transaction is processed.)
-USD_AMOUNT (Standardized amount for reporting and cross-currency comparisons.)
+  AMOUNT (Transaction amount.)
+  CURRENCY (Currency in which the transaction is processed.)
+  USD_AMOUNT (Standardized amount for reporting and cross-currency comparisons.)
 ## 1.5 Status Information
 TRANSACTION_STATUS_ID (Tracks payment progress, e.g., pending, completed, failed.)
 CREATION_DATE (Used as the submission date for frontend display.)
