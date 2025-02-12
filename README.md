@@ -164,3 +164,78 @@ Key Relationships Remain As:
 Primary and Foreign Key relationships
 Index recommendations
 Caching strategies
+
+```
+CREATE TABLE payments (
+    funds_transfer_id BIGSERIAL PRIMARY KEY,  -- Unique ID for the funds transfer
+    transaction_id BIGINT,  -- Internal transaction ID for tracking
+    transaction_reference_number VARCHAR(35),  -- Reference number for external systems
+
+    -- Beneficiary Information
+    benef_cust_name VARCHAR(140),  -- Name of the beneficiary customer
+    benef_cust_id VARCHAR(64),  -- Unique identifier of the beneficiary customer
+
+    -- Payment Type / Tags
+    transaction_code VARCHAR(4),  -- Code representing the type of transaction
+    funds_type VARCHAR(8),  -- Specifies the type of funds transfer (e.g., Wire, ACH)
+    category_purpose VARCHAR(4),  -- Short code describing the transaction purpose
+
+    -- Amount Details
+    amount NUMERIC(21,5),  -- Transfer amount in the transaction currency
+    currency VARCHAR(8),  -- Currency of the transaction (e.g., USD, EUR)
+    usd_amount NUMERIC(21,5),  -- Converted amount in USD for standardization
+
+    -- Status Information
+    transaction_status_id BIGINT,  -- Status identifier for the transaction
+    creation_date TIMESTAMP WITHOUT TIME ZONE,  -- Timestamp when the transaction was created
+
+    -- Transaction Processing
+    value_date TIMESTAMP WITHOUT TIME ZONE,  -- Date when the transaction is effective
+    exchange_rate NUMERIC(22,6),  -- Exchange rate applied if currency conversion occurs
+    base_rate NUMERIC(21,10),  -- Base rate for internal calculations
+    fx_exchange_rate NUMERIC,  -- Foreign exchange rate applied
+    fx_online_indicator SMALLINT,  -- Flag indicating whether FX was online (1) or offline (0)
+    tracking_status_id BIGINT,  -- Status ID used for tracking payments
+    tracking_detail_id BIGINT,  -- Detailed tracking identifier for tracing payments
+
+    -- Extended Beneficiary Details
+    benef_cust_address_line1 VARCHAR(70),  -- First address line of beneficiary
+    benef_cust_address_line2 VARCHAR(70),  -- Second address line of beneficiary
+    benef_cust_address_line3 VARCHAR(64),  -- Third address line of beneficiary
+    benef_cust_country_code VARCHAR(8),  -- Country code of beneficiary
+    benef_bank_funds_type VARCHAR(8),  -- Bank-specific funds type classification
+    benef_instit_id VARCHAR(84),  -- ID of the beneficiary's financial institution
+    benef_instit_name VARCHAR(140),  -- Name of the beneficiary’s financial institution
+
+    -- Source / Routing Information
+    source_system VARCHAR(8),  -- Identifier for the source system generating the payment
+    application_id VARCHAR(4),  -- ID representing the application handling the transaction
+    iban VARCHAR(64),  -- International Bank Account Number for transfers
+    bank_swift_id VARCHAR(32),  -- SWIFT/BIC code of the receiving bank
+    uetr VARCHAR(64),  -- Unique End-to-End Transaction Reference
+
+    -- Audit / Security Fields
+    created_by VARCHAR(128),  -- User ID of who created the record
+    creation_date TIMESTAMP WITHOUT TIME ZONE,  -- Timestamp of when the record was created
+    last_updated_by VARCHAR(128),  -- User ID of last update
+    last_updated_date TIMESTAMP WITHOUT TIME ZONE,  -- Timestamp of last modification
+    user_session_id VARCHAR(256),  -- Session ID of the user making changes
+    version BIGINT,  -- Versioning for record updates
+
+    -- Payment Details
+    details_of_payment_line1 VARCHAR(84),  -- Additional payment details (line 1)
+    details_of_payment_line2 VARCHAR(35),  -- Additional payment details (line 2)
+    details_of_payment_line3 VARCHAR(35),  -- Additional payment details (line 3)
+    details_of_payment_line4 VARCHAR(35),  -- Additional payment details (line 4)
+    details_of_charges VARCHAR(84),  -- Charge breakdown for the payment
+    purpose_code VARCHAR(16),  -- Payment purpose classification
+    business_category VARCHAR(32),  -- Categorization of the transaction for reporting
+
+    -- Account Information
+    debit_account_number VARCHAR(35),  -- Source account number for the transaction
+    debit_account_currency_code VARCHAR(4),  -- Currency of the source account
+    account_balance NUMERIC,  -- Available balance at the time of transaction
+    orig_debit_account_number VARCHAR(35)  -- Original account number before modifications
+);
+
+```
