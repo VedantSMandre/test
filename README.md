@@ -239,3 +239,4 @@ CREATE TABLE payments (
 );
 
 ```
+## The cloud team is configuring essential alerts for the Azure PostgreSQL database using Terraform scripts, ensuring proactive monitoring as per the requirements raised by the data team. These alerts are designed to track key performance metrics and prevent potential disruptions by notifying the relevant teams in a timely manner. By implementing these alerts, we aim to maintain database health, optimize resource utilization, and mitigate risks such as connection exhaustion, high CPU/memory usage, and storage constraints. This automated monitoring framework will enhance system reliability, enabling swift troubleshooting and efficient database management.
